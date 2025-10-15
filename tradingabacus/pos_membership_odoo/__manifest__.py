@@ -3,7 +3,7 @@
 
 {
     "name" : "POS Membership Management in Odoo",
-    "version" : "17.0.0.1",
+    "version" : "18.0.0.1",
     "category" : "Point of Sale",
     "depends" : ['base','sale','point_of_sale'],
     "author": "BrowseInfo",
