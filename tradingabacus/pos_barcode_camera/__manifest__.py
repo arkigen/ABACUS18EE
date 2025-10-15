@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "POS Barcode Camera + Parser confiable por ProductScreen (v45)",
-    "version": "17.0.1.0.45",
+    "version": "18.0.1.0.45",
     "summary": "Parche directo a ProductScreen con parser confiable para códigos de balanza",
     "author": "Avantiare GROUP SAS",
     "license": "LGPL-3",

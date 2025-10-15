@@ -30,7 +30,7 @@ Características:
 - Configuración simple a través de la interfaz de usuario
 - Integración completa con el sistema POS de Odoo
 ''',
-	'version': '17.0.1.0.2',
+      'version': '18.0.1.0.2',
 	'author': "Pronexo",
 	'license': "AGPL-3",
 	'maintainer': 'Pronexo',
