@@ -1,8 +1,0 @@
-<odoo>
-  <template id="assets_backend" name="pos_barcode_camera assets" inherit_id="point_of_sale.assets_backend">
-    <xpath expr="." position="inside">
-      <script type="text/javascript" src="/pos_barcode_camera/static/src/js/barcode_camera.js"/>
-      <link rel="import" href="/pos_barcode_camera/static/src/xml/barcode_camera.xml"/>
-    </xpath>
-  </template>
-</odoo>
