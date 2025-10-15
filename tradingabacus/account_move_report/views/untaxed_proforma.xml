@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+        <template id="inherit_report_saleorder_document" inherit_id="sale.report_saleorder_document">
+
+            <xpath expr="//th[@name='th_subtotal']" position="replace">
+                <t t-if="is_proforma_non_taxes">
+                    <th name="th_subtotal" class="text-right">
+                        <span>Total Price [Excl. TAX]</span>
+                    </th>
+                </t>
+                <t t-else="">
+                    <th name="th_subtotal" class="text-right">
+                        <t groups="account.group_show_line_subtotals_tax_excluded">Amount</t>
+                        <t groups="account.group_show_line_subtotals_tax_included">Total Price</t>
+                    </th>
+                </t>
+            </xpath>
+
+            <xpath expr="//td[@name='td_subtotal']" position="replace">
+                <t t-set="current_subtotal" t-value="0"/>
+                <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+                <t t-if="is_proforma_non_taxes">
+
+                    <td name="td_subtotal" class="text-right o_price_total">
+                        <span t-esc="current_subtotal" t-options="{'widget': 'float', 'display_currency': doc.pricelist_id.currency_id, 'precision': 0}"/>
+                    </td>
+
+                    <t t-set="current_subtotal" t-value="0"/>
+
+                </t>
+
+                <t t-else="">
+                    <td name="td_subtotal" class="text-right o_price_total">
+                        <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+
+                        <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                    </td>
+                </t>
+            </xpath>
+
+            <xpath expr="//div[@name='so_total_summary']" position="replace">
+                <t t-if="is_proforma_non_taxes">
+                    <div class="clearfix" name="so_total_summary">
+                        <div id="total" class="row" name="total">
+                            <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                                <table class="table table-sm">
+                                    <!-- Tax totals -->
+                                    <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                    <t t-call="account_move_report.document_tax_totals"/>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="clearfix" name="so_total_summary">
+                        <div id="total" class="row" name="total">
+                            <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                                <table class="table table-sm">
+                                    <!-- Tax totals -->
+                                    <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                    <t t-call="account.document_tax_totals"/>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

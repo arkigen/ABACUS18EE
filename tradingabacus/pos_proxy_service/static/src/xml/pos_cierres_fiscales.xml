@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="pos_proxy_service.CfTicketButtons">
+        <t t-set="logIconInfo" t-value="console.log('[CF Button Template] Rendering template with icon')" />
+        <button class="control-button odoo-theme-color" t-on-click="onClick">
+            <i class="fa fa-ticket" aria-hidden="true" t-att-data-debug="console.log('[CF Button Template] Icon element created')" />
+            <span> Cierre Físcal</span>
+        </button>
+    </t>
+</templates>

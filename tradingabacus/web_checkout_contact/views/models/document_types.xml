@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        
+         <record id="view_l10n_latam_tree" model="ir.ui.view">
+            <field name="name">document_types</field>
+            <field name="model">l10n_latam.identification.type</field>
+            <field name="type">tree</field>
+            <field name="priority">0</field>
+            <field name="arch" type="xml">
+                <list string="tipos">
+                    <field name="name"/>
+                    <field name="invoice_code"/>
+                </list>
+            </field>
+        </record>
+        
+        <record id="view_l10n_latam_form" model="ir.ui.view">
+            <field name="name">document_types</field>
+            <field name="model">l10n_latam.identification.type</field>
+            <field name="type">form</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="invoice_code"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_indenty" model="ir.actions.act_window">
+            <field name="name">IDENTY</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n_latam.identification.type</field>            
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_vi ew_nocontent_create">
+                    Click to add a new MAWIDA
+                </p><p>
+                    Click the Create button to add a new MAWIDA
+                </p>
+            </field>
+        </record>
+        
+        <!-- <menuitem id="menu_identification" name="IDENTY" sequence="0" action="action_indenty"/>  -->
+    </data>
+</odoo>

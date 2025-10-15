@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="top_client_wizard_report">
+			<t t-call="web.basic_layout">
+				<t t-foreach="member_list" t-as="o">
+					<t t-if="o.membership_template">
+						<t t-foreach="range(o.membership_template.print_qty)" t-as="qty">
+							<div class="page" >
+								<t t-if="o.membership_template.card_front_image">
+									<div  style="height:400;width:300px;margin:auto;">
+										<div  class="img img-responsive">
+											
+											<img t-att-src="image_data_uri(o.membership_template.card_front_image)" t-attf-style="border-radius: 15px;display:block;width: #{o.membership_template.label_width or '100'}% ;  height: #{o.membership_template.label_hight or '100'}px ;"/>
+										</div>
+							
+										<div t-if="o.membership_code" t-field="o.membership_code" t-options="{'widget': 'barcode', 'width': 300, 'height': 30, 'img_style': 'max-height:50pt;max-width:100%;', 'img_align': 'center'}" t-attf-style="margin-top: 15%;width: 100%;  height: 30px ;" alt="Barcode Image"/>
+
+
+										<span t-esc="o.hide_barcode" style="font-size:12px;text-align:center;;margin-left:40%;color: black;margin-bottom:10px;" />
+										<t t-if="o.membership_template.card_back_image">
+											<div class="img img-responsive" >
+												<img  t-att-src="image_data_uri(o.membership_template.card_back_image)" t-attf-style="border-radius: 15px;display:block;width: #{o.membership_template.label_width or '100'}% ;  height: #{o.membership_template.label_hight or '100'}px ;"/>
+											</div>
+										</t>
+									</div>
+								</t>
+							</div>
+							<p style="page-break-before:always;"> </p>
+						</t>
+					</t>
+					<t t-if="not o.membership_template">
+						
+						<!-- Front Side -->
+						<div class="page">
+
+							<div class="img img-responsive">
+								<img src="/pos_membership_odoo/static/src/img/comman.jpg" style="width:100%;border-radius:15px;"/>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 ml8" style="position:absolute;top:20px;right:50px;left:200px;max-width:50%;" >
+									<img t-if="o.partner_id.company_id.logo" t-att-src="image_data_uri(o.partner_id.company_id.logo)" style="max-width:60%;" alt="Company Logo"/>
+									<br/>
+									<span t-field="o.partner_id.company_id.name" style="color:white !important;" />
+									<br/>
+									<span t-field="o.partner_id.company_id.street" style="color:white !important;" />
+									<span t-field="o.partner_id.company_id.street2" style="color:white !important;" />
+									<br/>
+									<span t-field="o.partner_id.company_id.city" style="color:white !important;" />
+								</div>
+							</div>
+
+						</div>
+
+						<!-- Back Side -->
+						<div class="page">
+							<div class="row">
+								<div class="img img-responsive">
+									<img src="/pos_membership_odoo/static/src/img/comman.jpg" style="width:100%;border-radius:15px;"/>
+								</div>
+								<div class="col-xs-12 ml8" style="position:absolute;width:100%;top:10px">
+									<div class="col-xs-12" style="position:absolute;width:40%;left:10px;top:5px">
+										<img src="/pos_membership_odoo/static/src/img/vip.png" style="width:100%;"/>
+									</div>
+									<br/>
+									<div class="owner_name" style="position:absolute;width:50%;right:0px;">
+										<label style="color:white !important;">Your name </label>
+										<br/>
+										<input type="text" style="background:white !important;"/>
+									</div>
+								</div>
+								<div class="col-xs-12" style="background:white !important;position:absolute;top:150px;">
+									<div t-if="o.membership_code" t-field="o.membership_code" t-options="{'widget': 'barcode', 'width': 600, 'height': 50, 'img_style': 'max-height:50pt;max-width:100%;', 'img_align': 'center'}" style="width:300px;display:block;height:20px;margin:0 auto;"  alt="Barcode Image"/>
+									<p style="font-size:15px;text-align:center;margin:0;" t-field="o.hide_barcode"/>
+								</div>
+							</div>
+						</div>
+						<p style="page-break-after:always"></p>
+					</t>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</odoo>

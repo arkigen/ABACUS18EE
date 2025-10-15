@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+
+	<t t-name="BiPaymentScreenButtons" t-inherit="point_of_sale.PaymentScreenButtons" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('payment-buttons')]" position="inside">
+
+			<button class="button memberShip-button btn btn-light py-3 text-start rounded-0 border-bottom"  
+                t-on-click="selectMemberShip">
+                <i class="fa fa-pencil"></i>
+                <span> Use MemberShip</span> 
+            </button>
+		</xpath>
+	</t>
+
+	<t t-name="BiPaymentScreenStatus" t-inherit="point_of_sale.PaymentScreenStatus" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('message')]" position="after">
+			<div class='membershipmessage' style="color: #0075AC; text-align: center; font-size: 18px;">
+			</div>
+		</xpath>
+	</t>
+	
+	<!-- <t t-name="PaymentScreenStatus" t-inherit="point_of_sale.PaymentScreenStatus" t-inherit-mode="extension" owl="1">
+		<xpath expr="//div[hasclass('message')]" position="after">
+			<div class='membershipmessage' style="color: #0075AC; text-align: center; font-size: 18px;">
+			</div>
+		</xpath>
+	</t> -->
+
+	
+
+	<t t-name="pos_membership_odoo.ApplyMembershipPopupWidget">
+        <div class="popup popup-textinput">
+            <div class="modal-header">
+                <h4 class="modal-title"><t t-esc="props.title" /></h4>
+            </div>
+            <div class="modal-body">
+                <div class='div-container'>
+					<p class="body" style="color: #0075AC;">Enter Your Membership Card Code Here</p>
+					<input id ="enter_card_code" style="width:75%;margin-left: 60px;" type="text" class='input-field' name="code"></input>
+				</div>
+            </div>
+            <div class="footer footer-flex modal-footer">
+                <div class="button cancel" t-on-click="cancel">
+					<t t-esc="props.cancelText" />
+				</div>
+				<div class="button apply_membership_card" t-on-click="apply_membership_card" style="width: 150px;">
+					<t t-esc="props.confirmText" />
+				</div>
+            </div>
+        </div>
+    </t>
+
+</templates>
+
+

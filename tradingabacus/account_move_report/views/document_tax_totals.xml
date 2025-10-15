@@ -1,0 +1,16 @@
+<odoo>
+  <data>      
+        <template id="document_tax_totals">
+             <t t-set="subtotal" t-value="tax_totals['subtotals'][0]"/>
+                <tr class="border-black o_subtotal">
+                    <td>
+                        <strong t-esc="subtotal['name']"/>
+                    </td>
+
+                    <td style="text-align:end;">
+                        <span t-att-class="oe_subtotal_footer_separator" t-esc="subtotal['formatted_amount']"/>
+                    </td>
+                </tr>
+        </template>
+    </data>
+</odoo>

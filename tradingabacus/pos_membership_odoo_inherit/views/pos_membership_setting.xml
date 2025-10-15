@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="pos_membership_setting_form_view_inherit_id">
+        <field name="name">pos.membership.setting.form.view.inherit</field>
+		<field name="model">pos.membership.setting</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="pos_membership_odoo.pos_membership_setting_form_view"/>
+        <field name="arch" type="xml">
+            <field name='issue_date' position='after'>                    
+                <field name='after_amount' widget='monetary'/>
+            </field>   
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,192 @@
+.pos {
+	.keyboard_frame {
+        @include media-breakpoint-down(md) {
+            height: 265px !important;
+        }
+		.close_button {
+			right: 45px !important;
+			top: 5px !important;
+			&:hover {
+				background-color: #d3d3d3;
+			}
+            @include media-breakpoint-down(md) {
+                position: unset !important;
+            }
+		}
+		.simple_keyboard {
+            @include media-breakpoint-down(md) {
+                height: 202px !important;
+            }
+			li {
+				height: 45px;
+				line-height: 45px;
+				&:hover {
+					background-color: #d3d3d3;
+				}
+                @include media-breakpoint-down(md) {
+                    
+                    &.delete{
+                        width: 68px !important;
+                    }
+                    &.space{
+                        width: 172px !important;
+                    }
+                }
+			}
+			li.symbol {
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+                @include media-breakpoint-down(md) {
+                    width: 38px;
+                }
+			}
+		}
+	}
+	.popups {
+		.popup.sh_password_popup {
+			.input-amount {
+				margin-bottom: 15px;
+			}
+			.footer {
+				.button {
+					&:hover {
+						background-color: #efefef;
+					}
+					transition: all 150ms linear;
+				}
+			}
+			.body {
+				input {
+					&:focus {
+						outline: none;
+						box-shadow: none;
+						border: solid 1px rgba(60,60,60,0.17);
+					}
+					color: #63717f;
+					font-size: 16px;
+				}
+			}
+		}
+		.popup.sh_barcode_popup {
+			.login-barcode-img {
+				width: 100px;
+				height: 100px;
+			}
+			.login-barcode-text {
+				margin-top: 10px;
+				font-weight: 500;
+				text-transform: capitalize;
+			}
+			.footer {
+				.button {
+					&:hover {
+						background-color: #efefef;
+					}
+					transition: all 150ms linear;
+				}
+			}
+		}
+		.popup.sh_validation_method_popup {
+			p.body {
+				display: flex;
+				margin: 40px 16px;
+				justify-content: space-between;
+				align-items: center;
+				justify-content: center;
+				.sh_barcode_div {
+					width: 100%;
+					width: auto;
+				}
+                .sh_pin_div,
+				.sh_password_div {
+					width: 100%;
+					width: auto;
+					button {
+						transition: all 150ms linear;
+						font-size: 15px;
+						color: #555555;
+						font-weight: bold;
+						padding: 25px 15px;
+                        border: 1px solid #555555;
+						&:hover {
+							background-color: #efefef;
+						}
+					}
+				}
+				.sh_or_div {
+					margin: 0 25px;
+				}
+			}
+			.login-barcode-img {
+				width: 85px;
+				height: 75px;
+				cursor: pointer;
+			}
+			.login-barcode-text {
+				margin-top: 10px;
+				font-weight: 500;
+				text-transform: capitalize;
+			}
+			.footer {
+				.button {
+					&:hover {
+						background-color: #efefef;
+					}
+					transition: all 150ms linear;
+				}
+			}
+		}
+	}
+	.popup.popup-password {
+		width: 300px !important;
+		height: 450px !important;
+		.input-amount {
+			margin-bottom: 15px;
+		}
+		.popup-numpad {
+			.input-button {
+				&:hover {
+					background-color: #fff;
+				}
+				transition: all 150ms linear;
+			}
+		}
+		.footer {
+			.button {
+				&:hover {
+					background-color: #efefef;
+				}
+				transition: all 150ms linear;
+			}
+		}
+		.popup-input.active {
+			outline: none;
+			box-shadow: none;
+			border: solid 1px rgba(60,60,60,0.17);
+		}
+		.popup-input {
+			color: #63717f;
+			font-size: 16px;
+		}
+	}
+}
+@media screen and (max-width:768.98px) {
+	.pos {
+		.modal-dialog {
+			.popup {
+				max-width: 350px;
+			}
+		}
+		.popups {
+			.popup.sh_validation_method_popup {
+				p.body {
+					flex-direction: column;
+					.sh_or_div {
+						margin: 25px;
+					}
+				}
+			}
+		}
+	}
+}

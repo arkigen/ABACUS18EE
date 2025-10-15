@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_inherit_fiscal_printer" model="ir.ui.view">
+        <field name="name">pos.config.form.view.inherit.fiscal.printer</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <setting id="other_devices" position="after">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="use_fiscal_printer"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="use_fiscal_printer" string="Impresora Fiscal"/>
+                        <div class="text-muted">
+                            Conectar impresora fiscal para facturación
+                        </div>
+                        <div class="content-group mt16" invisible="not use_fiscal_printer">
+                            <div class="row">
+                                <label string="IP" for="proxy_fiscal_printer" class="col-lg-3"/>
+                                <field name="proxy_fiscal_printer" placeholder="http://127.0.0.1:5005" class="col-lg-9"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label string="Modelo" for="version_printer" class="col-lg-3"/>
+                                <field name="version_printer" class="col-lg-9"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </setting>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_pos_manager_validation_config" model="ir.ui.view">
+        <field name="name">sh.pos.manager.validation.config.setting.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block id="pos_interface_section" position="after">
+                <block title="POS Manager Validation">
+                    <setting>
+                        <field name="sh_pos_manager_validation"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_one_time_password"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_validation_type"/>
+                        <div class="content-group">
+                            <div class="mt16" invisible="sh_validation_type != 'password' and  sh_validation_type != 'pin_password' and sh_validation_type != 'password_barcode' and sh_validation_type != 'all'">
+                                <field name="sh_virtual_keyboard" required="sh_pos_manager_validation"/>
+                                <label for="sh_virtual_keyboard" />
+                            </div>
+                        </div>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_manger_ids" widget="many2many_tags" required="sh_pos_manager_validation"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_order_line_delete_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_oreder_delete_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_dicount_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_price_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_qty_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_payment_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_refund_pw"/>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_validation_on_payment_method"/>
+                        <div class="content-group">
+                            <div class="mt16" invisible="not sh_validation_on_payment_method">
+                                <label for="sh_select_method_ids" />
+
+                                <field name="sh_select_method_ids" widget="many2many_tags" required="sh_validation_on_payment_method"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting invisible="not sh_pos_manager_validation">
+                        <field name="sh_cash_move_validation"/>
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+		<record id="action_top_clients_membership_cards" model="ir.actions.report">
+			<field name="name">Top Clients Membership Card</field>
+			<field name="model">pos.membership.top.clients.cards</field>
+			<field name="binding_model_id" ref="model_pos_membership"/>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">pos_membership_odoo.top_client_wizard_report</field>
+			<field name="report_file">pos_membership_odoo.top_client_wizard_report</field>
+			<field name="print_report_name">'Top Clients Membership Card'</field>
+			<field name="binding_type">report</field>
+			<field name="binding_model_id" eval="False"/>
+		</record>
+
+		
+	
+		<record id="pos_membership_only_front_img_report" model="ir.actions.act_window">
+	        <field name="name">Print Front Image</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">pos.membership.front.image</field>
+	        <field name="view_mode">form</field>
+	        <field name="binding_model_id" ref="model_pos_membership"/>
+	        <field name="binding_view_types">form</field>
+	        <field name="target">new</field>
+	    </record>
+
+	    <record id="pos_membership_only_back_img_report" model="ir.actions.act_window">
+	        <field name="name">Print Back Image</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">pos.membership.back.image</field>
+	        <field name="view_mode">form</field>
+	        <field name="binding_model_id" ref="model_pos_membership"/>
+			<field name="binding_view_types">form</field>	        
+			<field name="target">new</field>
+	    </record>
+
+	    <record id="pos_membership_full_front_img_report" model="ir.actions.act_window">
+	        <field name="name">Print Full Front Image</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">pos.membership.full.front.image</field>
+	        <field name="view_mode">form</field>
+	        <field name="binding_model_id" ref="model_pos_membership"/>
+	        <field name="binding_view_types">form</field>
+	        <field name="target">new</field>
+	    </record>
+
+	    <record id="pos_membership_full_back_img_report" model="ir.actions.act_window">
+	        <field name="name">Print Full Back Image</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">pos.membership.full.back.image</field>
+	        <field name="view_mode">form</field>
+	        <field name="binding_model_id" ref="model_pos_membership"/>
+	        <field name="binding_view_types">form</field>
+	        <field name="target">new</field>
+	    </record>
+		
+
+		
+
+	</data>
+</odoo>

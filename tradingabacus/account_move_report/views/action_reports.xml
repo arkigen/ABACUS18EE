@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        
+          <template id="_report_proforma_invoice_non_taxes">
+              <t t-call="web.html_container" groups="sale.group_proforma_sales">
+                  <t t-set="is_pro_forma" t-value="True"/>
+                  <t t-set="is_proforma_non_taxes" t-value="True"/>
+                  <t t-foreach="docs" t-as="doc">
+                      <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                  </t>
+              </t>
+          </template>
+  
+          <record id="sale_order_report_proforma_non_taxes" model="ir.actions.report">
+              <field name="name">PRO-FORMA Invoice Without Taxes</field>
+              <field name="model">sale.order</field>
+              <field name="report_name">account_move_report._report_proforma_invoice_non_taxes</field>
+              <field name="report_type">qweb-pdf</field>
+              <field name="print_report_name">'PRO-FORMA - %s' % (object.name)</field>
+              <field name="binding_model_id" ref="sale.model_sale_order"/>
+              <field name="binding_type">report</field>
+          </record>
+          
+  
+          <report id="action_report_proforma_invoice_non_taxes"
+              string="PRO-FORMA Invoice Without Taxes"
+              model="sale.order"
+              report_type="qweb-pdf"
+              file="account_move_report._report_proforma_invoice_non_taxes"
+              name="account_move_report._report_proforma_invoice_non_taxes"
+              print_report_name="'PRO-FORMA - %s' % (object.name)"/>
+      
+  
+      </data>
+  </odoo>

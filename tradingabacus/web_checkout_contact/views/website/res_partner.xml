@@ -1,0 +1,116 @@
+<odoo>
+    <data>
+        
+        <template id="fe_address_checkout" inherit_id="website_sale.address">
+            
+            <xpath expr="//label[@for='vat']" position="after">
+                <t>                  
+                    <select name="l10n_latam_identification_type_id_maskared" id="l10n_latam_identification_type_id_maskared" t-attf-class="form-control #{error.get('l10n_latam_identification_type_id') and 'is-invalid' or ''}" t-att-readonly="'1' if 'vat' in checkout and checkout['vat'] and not can_edit_vat else None">
+                        <option t-att-value="22" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '22'">Cédula Extranjería</option>
+                        <option t-att-value="13" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '13'">Cédula de Ciudadanía</option>    
+                        <option t-att-value="21" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '21'">Tarjeta Extranjería</option>
+                        <option t-att-value="42" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '42'">Nº Identificación extranjera</option>                                              
+                        <option t-att-value="31" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '31'">NIT</option>
+                        <option t-att-value="50" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '50'">VAT Extranjero</option>
+                        <option t-att-value="11" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '11'">Registro Civil</option>
+                        <option t-att-value="41" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '41'">Pasaporte</option>
+                        <option t-att-value="12" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '12'">Tarjeta Identidad</option>                                                                   
+                        <option t-att-value="91" t-att-selected="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id'] == '91'">NIUP *</option>
+                    </select>
+                    <input type="hidden" name="l10n_latam_identification_type_id" t-att-value="'l10n_latam_identification_type_id' in checkout and checkout['l10n_latam_identification_type_id']"/>
+                    <div class="verifiaction-code"></div>
+                </t>
+            </xpath>
+            
+            <xpath expr="//label[@for='vat']" position="replace">
+                <label class="col-form-label font-weight-normal label-optional" for="vat">Identificación</label>
+            </xpath>
+            
+            <xpath expr="//input[@name='vat']" position="after">
+                <input name="verification_code"  id="verification_code" type="number" t-att-value="'verification_code' in checkout and checkout['verification_code']" min="0" max="9" step="1" class="form-control vat_no_nit" required="1"/>
+            </xpath>
+            
+            <xpath expr="//input[@name='city']" position="after">
+                <select name="municipality_id"  id="municipality_id" t-att-value="'municipality_id' in checkout and checkout['municipality_id']" class="form-control"/>
+            </xpath>
+            
+            <xpath expr="//input[@name='email']" position="after">
+                <input name="email_edi"  id="email_edi" type="text" t-att-value="'email_edi' in checkout and checkout['email_edi']" min="0" max="9" step="1" class="form-control email_edi hidden_field" readonly="1"/>
+            </xpath>
+            
+            <xpath expr="//select[@name='state_id']" position="after">
+                <select name="_state_id"  id="_state_id" t-att-value="'_state_id' in checkout and checkout['_state_id']" class="form-control"/>
+            </xpath>
+
+            <xpath expr="//form[hasclass('checkout_autoformat')]/div[hasclass('row')]/div[10]" position="replace">
+                <div t-attf-class="form-group #{error.get('country_id') and 'o_has_error' or ''} col-lg-6 div_country">
+                  <label class="col-form-label" for="country_id">País</label>
+                  <select id="country_id" name="country_id" t-attf-class="form-control #{error.get('country_id') and 'is-invalid' or ''}" t-att-mode="mode[1]">
+                      <option value="">País...</option>
+                      <t t-foreach="countries" t-as="c">
+                          <option t-att-value="c.id" t-att-selected="c.id == (country and country.id or -1)">
+                              <t t-esc="c.name"/>
+                          </option>
+                      </t>
+                  </select>
+                  <input type="hidden" name="is_company" t-att-value="'is_company' in checkout and checkout['is_company']"/>
+                  <input type="hidden" name="company_type" t-att-value="'company_type' in checkout and checkout['company_type']"/>
+                    
+                </div>
+            </xpath>
+
+            <xpath expr="//form[hasclass('checkout_autoformat')]/div[hasclass('row')]/div[11]" position="replace">
+                <div t-attf-class="form-group #{error.get('state_id') and 'o_has_error' or ''} col-lg-6 div_state" t-att-style="(not country or not country.state_ids) and 'display: none'">
+                    <label class="col-form-label" for="state_id">Departamento</label>
+                    <select name="state_id" t-attf-class="form-control #{error.get('state_id') and 'is-invalid' or ''}" data-init="1">
+                        <option value="">Departamento</option>
+                        <t t-foreach="country_states" t-as="s">
+                            <option t-att-value="s.id" t-att-selected="s.id == ('state_id' in checkout and country and checkout['state_id'] != '' and int(checkout['state_id']))">
+                                <t t-esc="s.name"/>
+                            </option>
+                        </t>
+                    </select>
+                    <select name="_state_id"  id="_state_id" t-att-value="'_state_id' in checkout and checkout['_state_id']" class="form-control">
+                        <option value="">Departamento</option>
+                    </select>
+                  </div>
+            </xpath>
+
+            <xpath expr="//form[hasclass('checkout_autoformat')]/div[hasclass('row')]/div[8]" position="replace"/>
+            <xpath expr="//form[hasclass('checkout_autoformat')]/div[hasclass('row')]/t[4]" position="replace"/>
+
+            <xpath expr="//form[hasclass('checkout_autoformat')]/div[hasclass('row')]/div[11]" position="before">
+                <div class="w-100"/>
+
+                <div t-attf-class="form-group #{error.get('city') and 'o_has_error' or ''} col-md-6 div_city">
+                    <label class="col-form-label" for="city">Municipio</label>
+                    <input type="text" name="city" t-attf-class="form-control #{error.get('city') and 'is-invalid' or ''}" t-att-value="'city' in checkout and checkout['city']"/>
+                    <select name="municipality_id"  id="municipality_id" t-att-value="'municipality_id' in checkout and checkout['municipality_id']" class="form-control">
+                        <option value="">Municipio</option>
+                    </select>
+                </div>
+
+                <t t-if="'zip' in zip_city and zip_city.index('zip') &gt; zip_city.index('city')">
+                    <div t-attf-class="form-group #{error.get('zip') and 'o_has_error' or ''} col-md-4 div_zip">
+                        <label class="col-form-label label-optional" for="zip">Código Postal</label>
+                        <input type="text" name="zip" t-attf-class="form-control #{error.get('zip') and 'is-invalid' or ''}" t-att-value="'zip' in checkout and checkout['zip']" readonly="1"/>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+            
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>res.partner</value>
+            <value eval="[
+                            'verification_code',
+                            'municipality_id',
+                            '_state_id',
+                            'email_edi',
+                            'is_company',
+                            'company_type',
+                            'l10n_latam_identification_type_id'
+                        ]"/>
+        </function>
+
+    </data>
+</odoo>
