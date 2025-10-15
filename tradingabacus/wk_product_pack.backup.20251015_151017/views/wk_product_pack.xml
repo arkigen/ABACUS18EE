@@ -118,7 +118,7 @@
 			<field name="res_model">product.template</field>
 			<field name="domain">[('is_pack', '=', True)]</field>
 			<field name="context">{'default_is_pack':True}</field>
-			<field name="view_mode">kanban,list,form</field>
+			<field name="view_mode">kanban,tree,form</field>
 			<field name="view_id" ref="product_pack_core_inherited_product_template_kanban"/>
 		</record>
 

@@ -17,7 +17,7 @@
   "name"                 :  "Product Pack",
   "summary"              :  """Combine two or more products together in order to create a bundle product.""",
   "category"             :  "Website",
-  "version"              :  "18.0.1.0.0",
+  "version"              :  "17.0.0.1",
   "sequence"             :  1,
   "author"               :  "Webkul Software Pvt. Ltd.",
   "license"              :  "Other proprietary",
