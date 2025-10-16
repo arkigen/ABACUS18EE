@@ -63,12 +63,7 @@
 							<field name="pack_stock_management" required="is_pack"/>
 							<field name="pack_products_price"/>
 						 </group>
-						 <field name="wk_product_pack">
-								<tree editable= "bottom">
-									<field name="product_id"/>
-									<field name="product_quantity"/>
-								</tree>
-							</field>
+					 <field name="wk_product_pack"/>
 					</page>
 				</notebook>
 			</field>
@@ -123,6 +118,19 @@
 		</record>
 
 		<menuitem id="menu_product_pack_core" name="Product Pack" parent="sale.product_menu_catalog" sequence="2" action="action_product_pack"/>
+
+		<!-- Separate list view for product.pack model -->
+		<record id="product_pack_list_view" model="ir.ui.view">
+			<field name="name">product.pack.list</field>
+			<field name="model">product.pack</field>
+			<field name="arch" type="xml">
+				<list editable="bottom" create="true" delete="true">
+					<field name="product_id" options="{'no_create': True}"/>
+					<field name="product_quantity"/>
+					<field name="price" readonly="1"/>
+				</list>
+			</field>
+		</record>
 
 	</data>
 </odoo>
