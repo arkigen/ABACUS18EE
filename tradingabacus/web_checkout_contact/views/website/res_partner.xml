@@ -54,14 +54,14 @@ Barrio
             
             
               <xpath expr="//select[@name='state_id']" position="after">
-                <select name="_state_id" id="_state_id" t-att-value="partner_sudo and partner_sudo._state_id and partner_sudo._state_id.id or ''" class="form-control"/>
+                <select name="_state_id" id="o_state_id_colombia" t-att-value="partner_sudo and partner_sudo._state_id and partner_sudo._state_id.id or ''" class="form-control"/>
             </xpath>
 
             <xpath expr="//div[@id='div_state']" position="after">
-                <div id="div_city" class="col-md-8 mb-2">
+                <div id="div_city_custom" class="col-md-8 mb-2">
                     <label class="col-form-label" for="o_city">City</label>
-                    <input id="o_city" type="text" name="city" class="form-control" t-att-value="partner_sudo and partner_sudo.city or ''"/>
-                    <select name="municipality_id" id="municipality_id" t-att-value="partner_sudo and partner_sudo.municipality_id and partner_sudo.municipality_id.id or ''" class="form-control">
+                    <input id="o_city_custom" type="text" name="city" class="form-control" t-att-value="partner_sudo and partner_sudo.city or ''"/>
+                    <select name="municipality_id" id="o_municipality_id" t-att-value="partner_sudo and partner_sudo.municipality_id and partner_sudo.municipality_id.id or ''" class="form-control">
                         <option value="">Municipio</option>
                     </select>
                 </div>
