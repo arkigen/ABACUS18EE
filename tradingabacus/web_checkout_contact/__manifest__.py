@@ -24,7 +24,7 @@
             ],
     'assets':   {
                'web.assets_frontend': [
-                                       "/web_checkout_contact/static/src/js/checkout_address.js",
+                                       ('after', 'website_sale/static/src/js/address.js', "/web_checkout_contact/static/src/js/checkout_address.js"),
                                        "/web_checkout_contact/static/src/css/checkout_address.css",
                                        ],
                 # "web.assets_backend": [
